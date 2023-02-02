@@ -1,5 +1,6 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:keyboard/constants.dart';
 import 'package:piano/piano.dart';
 
 class MainScreen extends StatefulWidget {
@@ -10,6 +11,16 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  void _loadSounds() {
+    FlameAudio.audioCache.loadAll(Constants.audioAssets);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSounds();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -32,12 +43,7 @@ class _MainScreenState extends State<MainScreen> {
             name = position.name.replaceFirst('♯', 'b');
           }
 
-          final player = AudioPlayer();
-          await player.play(AssetSource('sounds/$name.mp3'),
-              mode: PlayerMode.lowLatency);
-          Future.delayed(const Duration(milliseconds: 2500), () async {
-            await player.dispose();
-          });
+          FlameAudio.play('$name.mp3');
         },
       ),
     );
