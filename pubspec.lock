@@ -196,10 +196,10 @@ packages:
     dependency: "direct main"
     description:
       name: gtk_window
-      sha256: "42c6679836ae97a88c1e31d7589c5aed109c6b2ee9bf8eaf112e5e6a5932ec1d"
+      sha256: "2760fda48314e4f38a0f4f7056cbb4885e230de4aa6a2905ca6345067e4109f4"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0"
+    version: "0.1.1"
   handy_window:
     dependency: transitive
     description:
