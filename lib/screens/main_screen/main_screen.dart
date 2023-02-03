@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gtk_window/gtk_window.dart';
 import 'package:keyboard/constants.dart';
 import 'package:keyboard/screens/main_screen/widgets/settings_drawer.dart';
+import 'package:keyboard/settings.dart';
 import 'package:piano/piano.dart';
 
 class MainScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class _MainScreenState extends State<MainScreen> {
     _loadSounds();
   }
 
+  Settings _settings = Settings();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,12 +53,19 @@ class _MainScreenState extends State<MainScreen> {
           }),
         ],
       ),
-      drawer: SettingsDrawer(),
+      drawer: SettingsDrawer(
+        settings: _settings,
+        onSettingsChanged: (Settings value) {
+          setState(() {
+            _settings = value;
+          });
+        },
+      ),
       backgroundColor: Colors.grey,
       body: InteractivePiano(
         naturalColor: Colors.white,
         accidentalColor: Colors.black,
-        keyWidth: 60,
+        keyWidth: _settings.keyWidth,
         noteRange: NoteRange.forClefs([
           Clef.Treble,
           Clef.Alto,

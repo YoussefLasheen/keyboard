@@ -105,6 +105,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  cupertino_icons:
+    dependency: transitive
+    description:
+      name: cupertino_icons
+      sha256: e35129dc44c9118cee2a5603506d823bab99c68393879edb440e0090d07586be
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
   equatable:
     dependency: transitive
     description:
@@ -174,6 +182,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
+  flutter_spinbox:
+    dependency: "direct main"
+    description:
+      name: flutter_spinbox
+      sha256: fca77cefea5586ba5fcc3a21e8f5a1b3be2f38b0fef3562ee511cdfae5208a6f
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.12.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -192,6 +208,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  gtk:
+    dependency: transitive
+    description:
+      name: gtk
+      sha256: "517560d6ec625c114cbdcde9223e5ee6418d30860377347ee1b0513399e7a3f5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   gtk_window:
     dependency: "direct main"
     description:
@@ -484,6 +508,46 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0+3"
+  yaru:
+    dependency: transitive
+    description:
+      name: yaru
+      sha256: "9c1d9fc35dcefdde81121549f84df18bf208141cdb4c4e681acf19d5d2cd714c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.2"
+  yaru_color_generator:
+    dependency: transitive
+    description:
+      name: yaru_color_generator
+      sha256: "78b96cefc4eef763e4786f891ce336cdd55ef8edc55494c4bea2bc9d10ef9c96"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
+  yaru_colors:
+    dependency: transitive
+    description:
+      name: yaru_colors
+      sha256: b2e87cac6629a301644b2e4577b8274937b56c8799ac1df852ba5689f7f213ae
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
+  yaru_icons:
+    dependency: transitive
+    description:
+      name: yaru_icons
+      sha256: "68fdf9e2c5dcd7454abc775b41592abd92d59ec885628fee5588077413319f10"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
+  yaru_widgets:
+    dependency: "direct main"
+    description:
+      name: yaru_widgets
+      sha256: "65244aa8e4a1b02510abde45524a3ddbfca852ec37a048d4cccb89bf674412bc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
 sdks:
   dart: ">=2.19.0 <3.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.7.0"
