@@ -61,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
       ),
-      backgroundColor: Colors.grey,
+      backgroundColor: Theme.of(context).primaryColor,
       body: InteractivePiano(
         naturalColor: Colors.white,
         accidentalColor: Colors.black,
