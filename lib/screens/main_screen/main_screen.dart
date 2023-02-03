@@ -2,6 +2,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:gtk_window/gtk_window.dart';
 import 'package:keyboard/constants.dart';
+import 'package:keyboard/screens/main_screen/widgets/settings_drawer.dart';
 import 'package:piano/piano.dart';
 
 class MainScreen extends StatefulWidget {
@@ -25,30 +26,32 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GTKHeaderBar(),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+      appBar: GTKHeaderBar(
+        leading: [
+          Builder(builder: (context) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(2),
+                child: SizedBox(
+                  width: 30,
+                  height: 30,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      backgroundColor: Colors.white12,
+                    ),
+                    child: const Icon(Icons.menu, size: 20),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                  ),
+                ),
               ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Item 1'),
-              onTap: () {
-              },
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
-              },
-            ),
-          ],
-        ),
+            );
+          }),
+        ],
       ),
+      drawer: SettingsDrawer(),
       backgroundColor: Colors.grey,
       body: InteractivePiano(
         naturalColor: Colors.white,
