@@ -1,5 +1,6 @@
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gtk_window/gtk_window.dart';
 import 'package:keyboard/constants.dart';
 import 'package:keyboard/screens/main_screen/widgets/settings_drawer.dart';
@@ -71,16 +72,16 @@ class _MainScreenState extends State<MainScreen> {
           Clef.Alto,
           Clef.Bass,
         ]),
-        hideNoteNames: true,
+        hideNoteNames: false,
         animateHighlightedNotes: false,
         onNotePositionTapped: (position) async {
           String name = '';
-          if (position.name.startsWith('C') || position.name.startsWith('F')) {
-            name = position.name.replaceFirst('♯', '');
+          if (position.startsWith('C') || position.startsWith('F')) {
+            name = position.replaceFirst('♯', '');
           } else {
-            name = position.name.replaceFirst('♯', 'b');
+            name = position.replaceFirst('♯', 'b');
           }
-
+    
           FlameAudio.play('$name.mp3');
         },
       ),
