@@ -14,65 +14,63 @@ class SettingsDrawer extends StatelessWidget {
     return Drawer(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-        child: Expanded(
-          child: Column(
-            children: [
-              SizedBox(height: 35),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Keyboard',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
+        child: Column(
+          children: [
+            SizedBox(height: 35),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Keyboard',
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
-              SizedBox(height: 35),
-              YaruSection(
-                headline: Text('Settings'),
-                child: Column(
-                  children: [
-                    YaruTile(
-                      title: const Text('Key Width'),
-                      trailing: SizedBox(
-                        width: 150,
-                        child: SpinBox(
-                          min: 50,
-                          max: 150,
-                          step: 10,
-                          value: settings.keyWidth,
-                          onChanged: (value) {
-                            onSettingsChanged(settings.copyWith(keyWidth: value));
-                          },
-                        ),
+            ),
+            SizedBox(height: 35),
+            YaruSection(
+              headline: Text('Settings'),
+              child: Column(
+                children: [
+                  YaruTile(
+                    title: const Text('Key Width'),
+                    trailing: SizedBox(
+                      width: 150,
+                      child: SpinBox(
+                        min: 50,
+                        max: 150,
+                        step: 10,
+                        value: settings.keyWidth,
+                        onChanged: (value) {
+                          onSettingsChanged(settings.copyWith(keyWidth: value));
+                        },
                       ),
                     ),
-                    YaruSwitchListTile(
-                      title: const Text('Sustain'),
-                      value: settings.sustain,
-                      onChanged: (value) {
-                        onSettingsChanged(settings.copyWith(sustain: value));
-                      },
-                    ),
-                  ],
-                ),
+                  ),
+                  YaruSwitchListTile(
+                    title: const Text('Sustain'),
+                    value: settings.sustain,
+                    onChanged: (value) {
+                      onSettingsChanged(settings.copyWith(sustain: value));
+                    },
+                  ),
+                ],
               ),
-              Spacer(), 
-              SizedBox(
-                height: 75,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Made with ❤️ by '),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        'assets/images/lasheenlogo.png',
-                      ),
+            ),
+            Spacer(), 
+            SizedBox(
+              height: 75,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Made with ❤️ by '),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      'assets/images/lasheenlogo.png',
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
