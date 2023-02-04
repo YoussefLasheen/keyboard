@@ -72,7 +72,8 @@ class _MainScreenState extends State<MainScreen> {
           Clef.Alto,
           Clef.Bass,
         ]),
-        hideNoteNames: false,
+        hideNoteNames: _settings.hideNoteName,
+        hideNoteKeyboardkey: _settings.hideKeyboardShortcuts,
         animateHighlightedNotes: false,
         onNotePositionTapped: (position) async {
           String name = '';

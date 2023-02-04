@@ -51,6 +51,20 @@ class SettingsDrawer extends StatelessWidget {
                       onSettingsChanged(settings.copyWith(sustain: value));
                     },
                   ),
+                  YaruSwitchListTile(
+                    title: const Text('Hide Keyboard shortcuts'),
+                    value: settings.hideKeyboardShortcuts,
+                    onChanged: (value) {
+                      onSettingsChanged(settings.copyWith(hideKeyboardShortcuts: value));
+                    },
+                  ),
+                  YaruSwitchListTile(
+                    title: const Text('Hide Note name'),
+                    value: settings.hideNoteName,
+                    onChanged: (value) {
+                      onSettingsChanged(settings.copyWith(hideNoteName: value));
+                    },
+                  ),
                 ],
               ),
             ),
