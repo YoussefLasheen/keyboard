@@ -9,6 +9,7 @@ import 'package:keyboard/settings.dart';
 import 'package:knob_widget/knob_widget.dart';
 import 'package:piano/piano.dart';
 import 'package:segment_display/segment_display.dart';
+import 'package:wheel_spinner/utils.dart';
 import 'package:wheel_spinner/wheel_spinner.dart';
 
 class MainScreen extends StatefulWidget {
@@ -27,9 +28,28 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _loadSounds();
-  }
+    setScreenText("123456789123456789");
 
+  }
+  setScreenText(String text) async {
+    int noOfCharacters = 4;
+      if(text.length > 4){
+        while(true){
+          for (int i = 0; i < text.length / 4; i++) {
+          await Future.delayed(Duration(milliseconds: 1250), () {
+            setState(() {
+              _screenText = text.substring(4 * i, clamp  (4 * (i + 1), 0, text.length).toInt());
+            });
+          });
+        }
+        }
+      }
+      setState(() {
+        _screenText = text;
+      });
+    }
   Settings _settings = Settings();
+  String _screenText = "";
   @override
   Widget build(BuildContext context) {
     KnobStyle knobStyle = const KnobStyle(
@@ -113,8 +133,8 @@ class _MainScreenState extends State<MainScreen> {
                               surfaceIntensity: 1,
                               boxShape: NeumorphicBoxShape.rect(),
                             ),
-                            child: const SixteenSegmentDisplay(
-                              value: "TEST",
+                            child: SixteenSegmentDisplay(
+                              value: _screenText,
                               segmentStyle: DefaultSegmentStyle(
                                   enabledColor: Colors.blue,
                                   disabledColor: Colors.white12),
