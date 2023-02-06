@@ -181,11 +181,18 @@ class _MainScreenState extends State<MainScreen> {
   SizedBox _buildSpacer({double space = 24}) => SizedBox(width: space);
 }
 
-class NeuomorphicSlider extends StatelessWidget {
+class NeuomorphicSlider extends StatefulWidget {
+  final double step;
   const NeuomorphicSlider({
-    super.key,
+    super.key, this.step = 0.1,
   });
 
+  @override
+  State<NeuomorphicSlider> createState() => _NeuomorphicSliderState();
+}
+
+class _NeuomorphicSliderState extends State<NeuomorphicSlider> {
+  double _value = 0.5;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -204,6 +211,10 @@ class NeuomorphicSlider extends StatelessWidget {
                 lightSource: LightSource.top,
               ),
               child: WheelSpinner(
+                value: _value/widget.step,
+                max: 1/widget.step,
+                min: 0,
+                onSlideUpdate: (value) => setState(() => _value = value*widget.step),
                 theme: WheelSpinnerThemeData.light().copyWith(
                     color: Colors.transparent,
                     dividerColor: Colors.white54,
@@ -217,7 +228,7 @@ class NeuomorphicSlider extends StatelessWidget {
             child: RotatedBox(
               quarterTurns: -1,
               child: NeumorphicProgress(
-                percent: 0.8,
+                percent: _value,
                 height: 25,
                 style: ProgressStyle(
                   depth: -5,
