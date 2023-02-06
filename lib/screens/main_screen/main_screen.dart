@@ -79,90 +79,101 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
       ),
-      body: NeumorphicBackground(
-        child: Column(
-          children: [
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  const Spacer(),
-                  Knob(
-                    style: knobStyle,
-                  ),
-                  const Spacer(),
-                  Column(
-                    children: [
-                      Center(
-                        child: Neumorphic(
-                          style: NeumorphicStyle(
-                            depth: -25,
-                            intensity: 1,
-                            surfaceIntensity: 1,
-                            boxShape: NeumorphicBoxShape.rect(),
-                          ),
-                          child: const SixteenSegmentDisplay(
-                            value: "12345678",
-                            segmentStyle: DefaultSegmentStyle(
-                              enabledColor: Colors.blue,
-                              disabledColor: Colors.white12
+      body: Stack(
+        children: [
+          NeumorphicBackground(),
+          Positioned.fill(
+            child: Opacity(
+                opacity: 0.05,
+                child: Image.asset(
+                  "assets/textures/noise-300x300.png",
+                  fit: BoxFit.scaleDown,
+                  repeat: ImageRepeat.repeat,
+                )),
+          ),
+          Column(
+            children: [
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    Knob(
+                      style: knobStyle,
+                    ),
+                    const Spacer(),
+                    Column(
+                      children: [
+                        Center(
+                          child: Neumorphic(
+                            style: NeumorphicStyle(
+                              depth: -25,
+                              intensity: 1,
+                              surfaceIntensity: 1,
+                              boxShape: NeumorphicBoxShape.rect(),
                             ),
-                            characterCount: 4,
-                            size: 6.0,
+                            child: const SixteenSegmentDisplay(
+                              value: "TEST",
+                              segmentStyle: DefaultSegmentStyle(
+                                  enabledColor: Colors.blue,
+                                  disabledColor: Colors.white12),
+                              characterCount: 4,
+                              size: 6.0,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 50),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const NeuomorphicSlider(),
-                          _buildSpacer(),
-                          const NeuomorphicSlider(),
-                          _buildSpacer(),
-                          const NeuomorphicSlider(),
-                          _buildSpacer(),
-                          const NeuomorphicSlider(),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Knob(
-                    style: knobStyle,
-                  ),
-                  const Spacer(),
-                ],
+                        const SizedBox(height: 50),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const NeuomorphicSlider(),
+                            _buildSpacer(),
+                            const NeuomorphicSlider(),
+                            _buildSpacer(),
+                            const NeuomorphicSlider(),
+                            _buildSpacer(),
+                            const NeuomorphicSlider(),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    Knob(
+                      style: knobStyle,
+                    ),
+                    const Spacer(),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: InteractivePiano(
-                naturalColor: Colors.white,
-                accidentalColor: Colors.black,
-                keyWidth: _settings.keyWidth,
-                noteRange: NoteRange.forClefs([
-                  Clef.Treble,
-                  Clef.Alto,
-                  Clef.Bass,
-                ]),
-                hideNoteNames: _settings.hideNoteName,
-                hideNoteKeyboardkey: _settings.hideKeyboardShortcuts,
-                animateHighlightedNotes: false,
-                onNotePositionTapped: (position) async {
-                  String name = '';
-                  if (position.startsWith('C') || position.startsWith('F')) {
-                    name = position.replaceFirst('♯', '');
-                  } else {
-                    name = position.replaceFirst('♯', 'b');
-                  }
+              Expanded(
+                child: InteractivePiano(
+                  naturalColor: Colors.white,
+                  accidentalColor: Colors.black,
+                  keyWidth: _settings.keyWidth,
+                  noteRange: NoteRange.forClefs([
+                    Clef.Treble,
+                    Clef.Alto,
+                    Clef.Bass,
+                  ]),
+                  hideNoteNames: _settings.hideNoteName,
+                  hideNoteKeyboardkey: _settings.hideKeyboardShortcuts,
+                  animateHighlightedNotes: false,
+                  onNotePositionTapped: (position) async {
+                    String name = '';
+                    if (position.startsWith('C') || position.startsWith('F')) {
+                      name = position.replaceFirst('♯', '');
+                    } else {
+                      name = position.replaceFirst('♯', 'b');
+                    }
 
-                  FlameAudio.play('$name.mp3');
-                },
+                    FlameAudio.play('$name.mp3');
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }
