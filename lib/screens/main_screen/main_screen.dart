@@ -118,87 +118,92 @@ class _MainScreenState extends State<MainScreen> {
                   repeat: ImageRepeat.repeat,
                 )),
           ),
-          Column(
-            children: [
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    Knob(
-                      style: knobStyle,
-                    ),
-                    const Spacer(),
-                    Column(
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return Column(
+                children: [
+                  const SizedBox(height: 8),
+                  if(constraints.maxHeight > 800 && constraints.maxWidth > 800)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
                       children: [
-                        Center(
-                          child: Neumorphic(
-                            style: NeumorphicStyle(
-                              depth: -25,
-                              intensity: 1,
-                              surfaceIntensity: 1,
-                              boxShape: NeumorphicBoxShape.rect(),
-                            ),
-                            child: SixteenSegmentDisplay(
-                              value: _screenText,
-                              segmentStyle: DefaultSegmentStyle(
-                                  enabledColor: Colors.blue,
-                                  disabledColor: Colors.white12),
-                              characterCount: 4,
-                              size: 6.0,
-                            ),
-                          ),
+                        const Spacer(),
+                        Knob(
+                          style: knobStyle,
                         ),
-                        const SizedBox(height: 50),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        const Spacer(),
+                        Column(
                           children: [
-                            const NeuomorphicSlider(),
-                            _buildSpacer(),
-                            const NeuomorphicSlider(),
-                            _buildSpacer(),
-                            const NeuomorphicSlider(),
-                            _buildSpacer(),
-                            const NeuomorphicSlider(),
+                            Center(
+                              child: Neumorphic(
+                                style: NeumorphicStyle(
+                                  depth: -25,
+                                  intensity: 1,
+                                  surfaceIntensity: 1,
+                                  boxShape: NeumorphicBoxShape.rect(),
+                                ),
+                                child: SixteenSegmentDisplay(
+                                  value: _screenText,
+                                  segmentStyle: DefaultSegmentStyle(
+                                      enabledColor: Colors.blue,
+                                      disabledColor: Colors.white12),
+                                  characterCount: 4,
+                                  size: 6.0,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 50),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const NeuomorphicSlider(),
+                                _buildSpacer(),
+                                const NeuomorphicSlider(),
+                                _buildSpacer(),
+                                const NeuomorphicSlider(),
+                                _buildSpacer(),
+                                const NeuomorphicSlider(),
+                              ],
+                            ),
                           ],
                         ),
+                        const Spacer(),
+                        Knob(
+                          style: knobStyle,
+                        ),
+                        const Spacer(),
                       ],
                     ),
-                    const Spacer(),
-                    Knob(
-                      style: knobStyle,
+                  ),
+                  Expanded(
+                    child: InteractivePiano(
+                      naturalColor: Colors.white,
+                      accidentalColor: Colors.black,
+                      keyWidth: _settings.keyWidth,
+                      noteRange: NoteRange.forClefs([
+                        Clef.Treble,
+                        Clef.Alto,
+                        Clef.Bass,
+                      ]),
+                      hideNoteNames: _settings.hideNoteName,
+                      hideNoteKeyboardkey: _settings.hideKeyboardShortcuts,
+                      animateHighlightedNotes: false,
+                      onNotePositionTapped: (position) async {
+                        String name = '';
+                        if (position.startsWith('C') || position.startsWith('F')) {
+                          name = position.replaceFirst('♯', '');
+                        } else {
+                          name = position.replaceFirst('♯', 'b');
+                        }
+          
+                        FlameAudio.play('$name.mp3');
+                      },
                     ),
-                    const Spacer(),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: InteractivePiano(
-                  naturalColor: Colors.white,
-                  accidentalColor: Colors.black,
-                  keyWidth: _settings.keyWidth,
-                  noteRange: NoteRange.forClefs([
-                    Clef.Treble,
-                    Clef.Alto,
-                    Clef.Bass,
-                  ]),
-                  hideNoteNames: _settings.hideNoteName,
-                  hideNoteKeyboardkey: _settings.hideKeyboardShortcuts,
-                  animateHighlightedNotes: false,
-                  onNotePositionTapped: (position) async {
-                    String name = '';
-                    if (position.startsWith('C') || position.startsWith('F')) {
-                      name = position.replaceFirst('♯', '');
-                    } else {
-                      name = position.replaceFirst('♯', 'b');
-                    }
-
-                    FlameAudio.play('$name.mp3');
-                  },
-                ),
-              ),
-            ],
+                  ),
+                ],
+              );
+            }
           ),
         ],
       ),
