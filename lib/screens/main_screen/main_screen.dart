@@ -212,13 +212,16 @@ class NeuomorphicSlider extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 18),
-          const SizedBox(
+           SizedBox(
             height: 250,
             child: RotatedBox(
               quarterTurns: -1,
               child: NeumorphicProgress(
                 percent: 0.8,
                 height: 25,
+                style: ProgressStyle(
+                  depth: -5,
+                ),
               ),
             ),
           )
