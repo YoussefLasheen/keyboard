@@ -85,6 +85,59 @@ class _MainScreenState extends State<MainScreen> {
     
           FlameAudio.play('$name.mp3');
         },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  SizedBox _buildSpacer({double space = 24}) => SizedBox(width: space);
+}
+
+class NeuomorphicSlider extends StatelessWidget {
+  const NeuomorphicSlider({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 350,
+      width: 25,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 50,
+            child: Neumorphic(
+              style: const NeumorphicStyle(
+                depth: 5,
+                shape: NeumorphicShape.convex,
+                surfaceIntensity: 0.5,
+                lightSource: LightSource.top,
+              ),
+              child: WheelSpinner(
+                theme: WheelSpinnerThemeData.light().copyWith(
+                    color: Colors.transparent,
+                    dividerColor: Colors.white54,
+                    border: Border.all(color: Colors.transparent)),
+              ),
+            ),
+          ),
+          const SizedBox(height: 18),
+          const SizedBox(
+            height: 250,
+            child: RotatedBox(
+              quarterTurns: -1,
+              child: NeumorphicProgress(
+                percent: 0.8,
+                height: 25,
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
