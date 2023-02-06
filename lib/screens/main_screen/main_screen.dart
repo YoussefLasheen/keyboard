@@ -20,6 +20,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  static const String _defaultScreenText = "Hi";
   void _loadSounds() {
     FlameAudio.audioCache.loadAll(Constants.audioAssets);
   }
@@ -28,26 +29,32 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _loadSounds();
-    setScreenText("123456789123456789");
-
+    _setScreenText(text: _defaultScreenText);
   }
-  setScreenText(String text) async {
-    int noOfCharacters = 4;
-      if(text.length > 4){
-        while(true){
-          for (int i = 0; i < text.length / 4; i++) {
-          await Future.delayed(Duration(milliseconds: 1250), () {
-            setState(() {
-              _screenText = text.substring(4 * i, clamp  (4 * (i + 1), 0, text.length).toInt());
-            });
+
+  void _setScreenText({required String text, int? repeats}) async {
+    int repeatCount = repeats ?? 1;
+    if (repeatCount > 1) {
+      while (true) {
+        String remainingText = text;
+        for (int i = 0; i < text.length; i++) {
+          setState(() {
+            String newText = remainingText.substring(
+                0, clamp(remainingText.length, 0, 4).toInt());
+            _screenText = newText.padRight(4, " ");
           });
+          remainingText = remainingText.substring(1);
+          await Future.delayed(const Duration(milliseconds: 250));
         }
-        }
+        repeatCount--;
       }
+    }else{
       setState(() {
-        _screenText = text;
+        _screenText = text.padRight(4, " ");
       });
     }
+  }
+
   Settings _settings = Settings();
   String _screenText = "";
   @override
@@ -204,7 +211,8 @@ class _MainScreenState extends State<MainScreen> {
 class NeuomorphicSlider extends StatefulWidget {
   final double step;
   const NeuomorphicSlider({
-    super.key, this.step = 0.1,
+    super.key,
+    this.step = 0.1,
   });
 
   @override
@@ -231,10 +239,11 @@ class _NeuomorphicSliderState extends State<NeuomorphicSlider> {
                 lightSource: LightSource.top,
               ),
               child: WheelSpinner(
-                value: _value/widget.step,
-                max: 1/widget.step,
+                value: _value / widget.step,
+                max: 1 / widget.step,
                 min: 0,
-                onSlideUpdate: (value) => setState(() => _value = value*widget.step),
+                onSlideUpdate: (value) =>
+                    setState(() => _value = value * widget.step),
                 theme: WheelSpinnerThemeData.light().copyWith(
                     color: Colors.transparent,
                     dividerColor: Colors.white54,
@@ -243,7 +252,7 @@ class _NeuomorphicSliderState extends State<NeuomorphicSlider> {
             ),
           ),
           const SizedBox(height: 18),
-           SizedBox(
+          SizedBox(
             height: 250,
             child: RotatedBox(
               quarterTurns: -1,
