@@ -29,7 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   piano: 
-    path: ./packages/piano
+    git: https://github.com/YoussefLasheen/piano.git
   flame_audio: ^1.4.0
   flutter:
     sdk: flutter
@@ -37,7 +37,7 @@ dependencies:
   flutter_spinbox: ^0.12.0
   yaru_widgets: ^2.0.1
   knob_widget: 
-    path: ./packages/neumorphic_knob
+    git: https://github.com/YoussefLasheen/neumorphic_knob.git
   flutter_neumorphic: ^3.2.0
   wheel_spinner: ^0.7.1
   segment_display: ^0.5.0
