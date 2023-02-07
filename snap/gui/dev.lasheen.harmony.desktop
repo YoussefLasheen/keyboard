@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Harmony
+Comment=A musical keybord app with a pleasing design
+Categories=music-and-audio;
+Icon=${SNAP}/meta/gui/v1.png
+Exec=harmony
+Terminal=false
