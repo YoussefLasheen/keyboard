@@ -14,6 +14,6 @@ apps:
     extensions: [flutter-stable] # Where "master" defines which Flutter channel to use for the build
 parts:
   harmony:
-    source: .
+    source: https://github.com/YoussefLasheen/keyboard.git
     plugin: flutter
     flutter-target: lib/main.dart # The main entry-point file of the application

@@ -381,8 +381,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: "424232ee2b20f2764b3107c178bae3e6a4450e0b"
+      ref: main
+      resolved-ref: b49b4f64ea5678d9f2c8c5cd2b90ce17862ef783
       url: "https://github.com/YoussefLasheen/piano.git"
     source: git
     version: "1.0.3+1"

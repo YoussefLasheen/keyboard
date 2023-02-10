@@ -28,8 +28,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  piano: 
-    git: https://github.com/YoussefLasheen/piano.git
+  piano:
+    git:
+      url: https://github.com/YoussefLasheen/piano.git
+      ref: main
   flame_audio: ^1.4.0
   flutter:
     sdk: flutter
