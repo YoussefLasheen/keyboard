@@ -11,6 +11,7 @@ class SettingsDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isNotLinux = Theme.of(context).platform != TargetPlatform.linux;
     return Drawer(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
@@ -51,6 +52,7 @@ class SettingsDrawer extends StatelessWidget {
                       onSettingsChanged(settings.copyWith(sustain: value));
                     },
                   ),
+                  if(!isNotLinux)
                   YaruSwitchListTile(
                     title: const Text('Hide Keyboard shortcuts'),
                     value: settings.hideKeyboardShortcuts,

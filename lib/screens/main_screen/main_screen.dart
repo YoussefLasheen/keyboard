@@ -72,32 +72,35 @@ class _MainScreenState extends State<MainScreen> {
       minorTickStyle:
           MinorTickStyle(color: Colors.grey, highlightColor: Colors.black),
     );
+    bool isNotLinux = Theme.of(context).platform != TargetPlatform.linux;
     return Scaffold(
-      appBar: GTKHeaderBar(
-        leading: [
-          Builder(builder: (context) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(2),
-                child: SizedBox(
-                  width: 30,
-                  height: 30,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                      backgroundColor: Colors.white12,
+      appBar: isNotLinux
+          ? AppBar() as PreferredSizeWidget?
+          : GTKHeaderBar(
+              leading: [
+                Builder(builder: (context) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(2),
+                      child: SizedBox(
+                        width: 30,
+                        height: 30,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            backgroundColor: Colors.white12,
+                          ),
+                          child: const Icon(Icons.menu, size: 20),
+                          onPressed: () {
+                            Scaffold.of(context).openDrawer();
+                          },
+                        ),
+                      ),
                     ),
-                    child: const Icon(Icons.menu, size: 20),
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                  ),
-                ),
-              ),
-            );
-          }),
-        ],
-      ),
+                  );
+                }),
+              ],
+            ),
       drawer: SettingsDrawer(
         settings: _settings,
         onSettingsChanged: (Settings value) {
@@ -181,13 +184,14 @@ class _MainScreenState extends State<MainScreen> {
                       naturalColor: Colors.white,
                       accidentalColor: Colors.black,
                       keyWidth: _settings.keyWidth,
+                      hideScrollbar: true,
                       noteRange: NoteRange.forClefs([
                         Clef.Treble,
                         Clef.Alto,
                         Clef.Bass,
                       ]),
                       hideNoteNames: _settings.hideNoteName,
-                      hideNoteKeyboardkey: _settings.hideKeyboardShortcuts,
+                      hideNoteKeyboardkey: _settings.hideKeyboardShortcuts || isNotLinux,
                       animateHighlightedNotes: false,
                       onNotePositionTapped: (position) async {
                         String name = '';
