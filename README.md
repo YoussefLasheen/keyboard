@@ -1,16 +1,11 @@
-# keyboard
+# Harmony
 
-A new Flutter project.
+A musical keybord app with a pleasing design
 
-## Getting Started
+ Built with love(&flutter) by lasheen.dev
 
-This project is a starting point for a Flutter application.
+&nbsp;&nbsp;&nbsp;&nbsp;<a href='https://snapcraft.io/harmony'><img alt='Get it on Google Play' src='https://raw.githubusercontent.com/snapcore/snap-store-badges/master/EN/%5BEN%5D-snap-store-black%402x.png' width= 173/></a>     <br> <a href='https://play.google.com/store/apps/details?id=dev.lasheen.harmony'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width=200/></a>|
 
-A few resources to get you started if this is your first Flutter project:
+### Privacy Policy
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This app does not collect any kind of personal data about the user.
